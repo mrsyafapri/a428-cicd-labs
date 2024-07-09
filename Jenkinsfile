@@ -17,6 +17,10 @@ node {
         }
     }
 
+    stage('Manual Approval') {
+        input message: 'Lanjutkan ke tahap Deploy?', ok: 'Proceed'
+    }
+
     stage('Deploy') {
         app.inside('-p 3000:3000') {
             sh './jenkins/scripts/deliver.sh'
