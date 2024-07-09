@@ -19,9 +19,10 @@ node {
 
     stage('Deploy') {
         app.inside('-p 3000:3000') {
-            sh './jenkins/scripts/deliver.sh' 
-            input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)' 
-            sh './jenkins/scripts/kill.sh' 
+            sh './jenkins/scripts/deliver.sh'
         }
+        // Jeda eksekusi selama 1 menit
+        echo 'Menjeda eksekusi pipeline selama 1 menit untuk percobaan aplikasi...'
+        sleep time: 1, unit: 'MINUTES'
     }
 }
